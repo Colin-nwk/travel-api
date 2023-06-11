@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Tour;
 
 class Travel extends Model
 {
@@ -24,7 +25,7 @@ class Travel extends Model
 
     public function tours(): HasMany
     {
-        return $this->hasMany(Tours::class);
+        return $this->hasMany(Tour::class);
     }
 
 
@@ -50,5 +51,10 @@ class Travel extends Model
     //? public function getNumberOfNightsAttribute()
     // {
     //     return $this->number_of_days - 1;
+    // }
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
     // }
 }
