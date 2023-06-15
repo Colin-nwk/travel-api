@@ -26,7 +26,7 @@ class ToursListTest extends TestCase
 
     public function test_tours_list_returns_pagination(): void
     {
-        $toursPerPage = config('app.paginationPerPage.tours');
+        $toursPerPage = config('app.paginationPerPage.tours', 15);
 
         $travel = Travel::factory()->create();
         Tour::factory()->count($toursPerPage + 1)->create(['travel_id' => $travel->id]);
@@ -37,6 +37,9 @@ class ToursListTest extends TestCase
         $response->assertJsonCount($toursPerPage, 'data');
         $response->assertJsonPath('meta.current_page', 1);
     }
+
+
+
 
     public function test_tours_list_sorts_by_starting_date_correctly()
     {
